@@ -5,4 +5,4 @@
 #### Caio Massaharu Damaceno Fumiya
 #### Ricardo Augusto Fernandes Junior
 
-This project was made using Django and Bootstrap 4.\
+This project was made using Django and Bootstrap 4.
