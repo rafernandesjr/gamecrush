@@ -1,6 +1,6 @@
 # Subject: Web Solutions Based in Open Source
 ## Second Project: GameCrush
-#### Developers:
+### Developers:
 ## Andrei Clemente de Oliveira
 ## Caio Massaharu Damaceno Fumiya
 ## Ricardo Augusto Fernandes Junior
