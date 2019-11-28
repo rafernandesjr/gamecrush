@@ -1,0 +1,30 @@
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">Sobre nós</h4>
+                <p class="text-muted">Nós somos a primeira plataforma onde você pode achar aquele seu companheiro para jogar aquele Aram, ou aquela sua partida ranked.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+                <ul class="list-unstyled">
+                <li><a href="/{{auth_id}}/acesso" class="text-white">Acessar</a></li>
+                <li><a href="/{{auth_id}}/registro" class="text-white">Cadastrar</a></li>
+                <a href="{% url 'admin:index' %}" class ="text-white">Administração</a>
+                <li><a href="#" class="text-white">Entre em Contato</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm" style="padding:2em;">
+        <div class="container d-flex justify-content-between">
+            <a href="/{{auth_id}}" class="navbar-brand d-flex align-items-center">
+            <strong style="color:whitesmoke; font-size: 1.2em;">Game Crush</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>

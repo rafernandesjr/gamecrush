@@ -1,0 +1,139 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'crushr.css' %}">
+
+    <title>Game Crush</title>
+  </head>
+  <body>
+    
+    {% include 'header.html' %}
+    
+    <main role="main">
+      <style>
+        .card img{
+          height:250px;
+        }
+        .card{
+          font-size: 0.9em;
+        }
+        .card h4{
+          font-size: 1.5em;
+        } 
+        .btn-group button, .btn-group a{
+          font-size: 1em;
+        }
+        .btn-group button{
+          color:#1f1f1f;
+        }
+        .d-flex .card{
+          width:30%;
+        }
+        @media only screen and (max-width: 1040px) {
+          .d-flex .card{
+            width:45%;
+          }
+        }
+        @media only screen and (max-width: 620px) {
+          .d-flex .card{
+            width:90%;
+          }
+        }
+      </style>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="padding-top:4em;">
+            <h1 class="h1 mb-4 font-weight-bold" style="color:whitesmoke; text-align:center">Encontre o seu player 2!</h1>
+            {% if auth_id != 0 %}
+              <center>
+                <a href="/" class="btn btn-danger">Sair da Sessão</a>
+              </center>
+            {% endif %}
+            <div class="container-fluid">
+              {% block content %}
+                <div class="d-flex flex-wrap justify-content-center" style="margin: 1em;">
+                  {% for user in users %}
+                    {% if user.id != auth_id%}
+                      <div class="card shadow-sm p-1" style="margin: 1em; margin-bottom: 2em;">
+                        {% if user.id == 1 or user.id == 4 or user.id == 7 or user.id == 10 or user.id == 13 or user.id == 16 %}
+                          <img class="card-img-top " style="object-fit:cover; height: 250px;"
+                            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=adult-beard-boy-casual-220453.jpg&fm=jpg"/>
+                        {% elif user.id == 2 or user.id == 5 or user.id == 8 or user.id == 11 or user.id == 14 or user.id == 17 %}
+                          <img class="card-img-top " style="object-fit:cover; height: 250px;"
+                            src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?cs=srgb&dl=boy-casual-eyes-1222271.jpg&fm=jpg"/>
+                        {% else %}
+                          <img class="card-img-top " style="object-fit:cover; height: 250px;"
+                            src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=women-s-white-and-black-button-up-collared-shirt-774909.jpg&fm=jpg"/>
+                        {% endif %}
+                        <div class="card-body">
+                          <h4 class="card-title">{{ user.name }}</h4>
+                          <p class="card-text" id="">Idade: {{ user.age }}</p>
+                          <p class="card-text">{{user.describe}}</p>
+                          <div class="d-flex justify-content-between align-items-center flex-column">
+                            <div class="btn-group" style="margin-bottom:0.8em;">
+                              <button type="button" id="{{user.id}}" onclick="seeProfile(this)" class="btn btn-sm btn-outline-secondary profile">Ver Perfil</button>
+                              <button type="button" id="{{user.id}}" onclick="newChat(this)" class="btn btn-sm btn-outline-secondary start-chat">Iniciar Conversa</button>
+                            </div>
+                            <div class="btn-group">
+                              <a href="/{{auth_id}}/delete/{{user.id}}" class="btn btn-danger" id = '{{user.id}}'>Deletar</a>
+                              <a href="/{{auth_id}}/update/{{user.id}}" class="btn btn-warning" id = '{{user.id}}'>Editar</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>        
+    </main>
+    
+    {% include 'footer.html' %}
+
+    <script>
+
+        var user = {{ auth_id }}
+        
+        function newChat(e) {
+                if(user != 0){
+                  var crush = e.id;
+                  
+                  var maior = crush > user ? crush : user;
+
+                  var menor = maior == crush ? user : crush;
+
+                  var roomName = maior + menor;
+
+                  window.location.pathname = user + '/chat/' +roomName + '/';
+                }
+                else{
+                  alert('Você deve logar para entrar em um chat!');
+                }
+            };
+
+        function seeProfile(e) {
+            var profile = e.id;
+            window.location.pathname = user + '/perfil/' + profile + '/';
+        };
+    </script>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <title>GameCrush - Cadastro</title>
+  </head >
+    <style>
+      td input{
+        width: 100%;
+      }
+      td textarea{
+        width: 100%;
+      }
+    </style>
+    <body class="bg-dark">
+
+        {% include 'header.html' %}
+        <main role="main">
+          <center>
+            <div style="width:30em; max-width:80vw; display: inline-block">
+            {% block content %}
+            <h1 class="h1 mb-4 font-weight-bold" style="color:whitesmoke; font-size:350%; margin-top:2em;">GameCrush</h1>
+            <h1 class="h3 mb-3 font-weight-normal" style="color: whitesmoke;">Faça seu cadastro</h1>
+            <form class="form-register" method = 'POST' enctype="multipart/form-data" style="margin:0px; width: 100%; max-width: 100%; margin-top: 0em;">
+                {% csrf_token %}
+                <table style="border-radius:10px;background-color:#FFFF99; margin-bottom: 2em;">
+                    {% for field in upload_form %}
+                    <tr>
+                        <th style="padding:1em">{{field.label}}</th>
+                        <td style="padding:1em">{{ field }}</td>
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit" class="btn btn-lg btn-warning" style="background-color:#FFFF99;font-weight:bold">Registrar</button>
+            </form>
+            {% endblock %}
+            </div>
+          </center>
+        </main>
+
+        {% include 'footer.html' %}
+
+
+        <!--
+        <form class="form-register" method="post">
+            <label for="inputName" class="sr-only">Full Name</label>
+            <input type="text" id="inputName" class="form-control" placeholder="Full Name" required="">
+            <label for="inputAge" class="sr-only">Birthday</label>
+            <input type="date" id="inputAge" class="form-control" placeholder="Birthday" required="">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+            <input type="text" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="button">Register</button>
+        </form>
+        -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
