@@ -68,7 +68,7 @@ def update_user(request, user_id, auth_id=0):
     if user_form.is_valid():
         user_form.save()
         return redirect(reverse('update', kwargs={'auth_id':auth_id, 'user_id':user_id}))
-    return render(request, 'gamecrush/register.html', {'upload_form':user_form, 'auth_id':int(auth_id)})
+    return render(request, 'gamecrush/register.html', {'upload_form':user_form, 'auth_id':int(auth_id), 'user_id':int(user_id)})
 
 def delete_user(request, user_id, auth_id=0):
     user_id = int(user_id)

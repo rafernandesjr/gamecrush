@@ -27,7 +27,13 @@
             <div style="width:30em; max-width:80vw; display: inline-block">
             {% block content %}
             <h1 class="h1 mb-4 font-weight-bold" style="color:whitesmoke; font-size:350%; margin-top:2em;">GameCrush</h1>
-            <h1 class="h3 mb-3 font-weight-normal" style="color: whitesmoke;">Faça seu cadastro</h1>
+            <h1 class="h3 mb-3 font-weight-normal" style="color: whitesmoke;">
+              {% if user_id %}
+                Edite seu perfil 
+              {% else %}
+                Faça seu cadastro
+              {% endif %}
+            </h1>
             <form class="form-register" method = 'POST' enctype="multipart/form-data" style="margin:0px; width: 100%; max-width: 100%; margin-top: 0em;">
                 {% csrf_token %}
                 <table style="border-radius:10px;background-color:#FFFF99; margin-bottom: 2em;">
@@ -43,7 +49,13 @@
                     </tr>
                     {% endfor %}
                 </table>
-                <button type="submit" class="btn btn-lg btn-warning" style="background-color:#FFFF99;font-weight:bold">Registrar</button>
+                <button type="submit" class="btn btn-lg btn-warning" style="background-color:#FFFF99;font-weight:bold">
+                  {% if user_id %}
+                    Atualizar
+                  {% else %}
+                    Cadastrar
+                  {% endif %}
+                </button>
             </form>
             {% endblock %}
             </div>

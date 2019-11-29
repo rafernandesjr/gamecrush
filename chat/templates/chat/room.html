@@ -1,17 +1,32 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>GameCrush - Chat</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'signin.css' %}">
+
+<title>Game Crush - Chat</title>
 </head>
-<body>
-    <div style="width:80vw; text-align: center;">
-        <textarea id="chat-log" disabled style="width: 100%; height: 80vh; font-size:160%; font-family:Consolas, monaco, monospace; color:black;"></textarea><br/>
-        <input id="chat-message-input" type="text" style="width: 90%; font-size:180%; font-family:Consolas, monaco, monospace"/><br/>
-        <input id="chat-message-submit" type="button" value="Enviar" style="width: 50%; font-size:160%; font-family:Consolas, monaco, monospace"/>
-    </div>
+<body class="bg-dark">
+    {% include 'header.html' %}
+    <main role="main">
+        <center>
+        <h1 class="h3 mb-3 font-weight-normal" style="color: whitesmoke; margin-top:1.5em;">Você está conversando com <strong>{{name}}</strong></h1>
+        <div style="width:30em; max-width:80vw; display: inline-block">
+            <div style=" text-align: center;">
+                <textarea id="chat-log" disabled style="margin-bottom:0.5em; border-radius: 15px; border-width: 5px; border-color: #364f3a; width: 100%; height: 80vh; font-size:160%; font-family:Consolas, monaco, monospace; color:black;"></textarea><br/>
+                <input id="chat-message-input" type="text" style="margin-bottom:0.5em; width: 90%; font-size:160%; font-family:Consolas, monaco, monospace" placeholder="Digite aqui sua mensagem..."/><br/>
+                <input id="chat-message-submit" type="button" value="Enviar" style="margin-bottom:0.5em; width: 50%; font-size:160%; font-family:Consolas, monaco, monospace"/>
+            </div>
+        </center>
+    </main>
+    {% include 'footer.html' %}
 </body>
 
 <script src="{% static 'reconnecting-websocket.js' %}"></script>
