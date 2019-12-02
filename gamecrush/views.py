@@ -10,10 +10,16 @@ from .forms import UserLogin
 from django.http.response import HttpResponseRedirect
 
 def index(request, auth_id=0):
+    user_id = int(auth_id)
     users = User.objects.all()
     for user in users:
         user.age = date.today().year - user.birthdate.year
-    return render(request, 'gamecrush/index.html', {'users': users,'auth_id':int(auth_id)})
+    try:
+        user_sel = User.objects.get(id = user_id)
+        is_admin = user_sel.is_admin
+    except User.DoesNotExist:
+        is_admin = False
+    return render(request, 'gamecrush/index.html', {'users': users,'auth_id':int(auth_id),'is_admin':is_admin})
 
 def signin(request, auth_id=0):
     login = UserLogin()
@@ -40,6 +46,7 @@ def profile(request, user_id, auth_id=0):
        
     return render(request, 'gamecrush/profile.html', {
         'auth_id': int(auth_id),
+        'user_id': user_id,
         'name': user_sel.name,
         'age': date.today().year - user_sel.birthdate.year,
         'describe': user_sel.describe

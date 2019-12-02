@@ -12,5 +12,7 @@ class User(models.Model):
     birthdate = models.DateField(blank=True, null=True)
     password = models.CharField(max_length = 30)
     email = models.EmailField(blank = False)
+    is_admin = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name

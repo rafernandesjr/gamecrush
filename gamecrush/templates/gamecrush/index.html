@@ -52,11 +52,6 @@
         <div class="carousel-inner">
           <div class="carousel-item active" style="padding-top:4em;">
             <h1 class="h1 mb-4 font-weight-bold" style="color:whitesmoke; text-align:center">Encontre o seu player 2!</h1>
-            {% if auth_id != 0 %}
-              <center>
-                <a href="/" class="btn btn-danger">Sair da Sessão</a>
-              </center>
-            {% endif %}
             <div class="container-fluid">
               {% block content %}
                 <div class="d-flex flex-wrap justify-content-center" style="margin: 1em;">
@@ -66,7 +61,7 @@
                         {% if user.id == 1 or user.id == 4 or user.id == 7 or user.id == 10 or user.id == 13 or user.id == 16 %}
                           <img class="card-img-top " style="object-fit:cover; height: 250px;"
                             src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=adult-beard-boy-casual-220453.jpg&fm=jpg"/>
-                        {% elif user.id == 2 or user.id == 5 or user.id == 8 or user.id == 11 or user.id == 14 or user.id == 17 %}
+                        {% elif user.id == 2 or user.id == 5 or user.id == 11 or user.id == 14 or user.id == 17 %}
                           <img class="card-img-top " style="object-fit:cover; height: 250px;"
                             src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?cs=srgb&dl=boy-casual-eyes-1222271.jpg&fm=jpg"/>
                         {% else %}
@@ -82,10 +77,12 @@
                               <button type="button" id="{{user.id}}" onclick="seeProfile(this)" class="btn btn-sm btn-outline-secondary profile">Ver Perfil</button>
                               <button type="button" id="{{user.id}}" onclick="newChat(this)" class="btn btn-sm btn-outline-secondary start-chat">Iniciar Conversa</button>
                             </div>
+                          {% if is_admin == True %}
                             <div class="btn-group">
                               <a href="/{{auth_id}}/delete/{{user.id}}" class="btn btn-danger" id = '{{user.id}}'>Deletar</a>
                               <a href="/{{auth_id}}/update/{{user.id}}" class="btn btn-warning" id = '{{user.id}}'>Editar</a>
                             </div>
+                          {% endif %}
                           </div>
                         </div>
                       </div>

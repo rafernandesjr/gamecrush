@@ -23,6 +23,31 @@
             <div class="container marketing text-white" style="padding-top:4em;padding-bottom:4em;">
                 <div class="row featurette">
                     <div class="col-md-12">
+                      <style>
+                        .center{
+                          display: block;
+                          margin-left: auto;
+                          margin-right: auto;
+                          width: 50%;
+                          margin-bottom:3em;
+                          border: 1em solid #eee;
+                          border-radius: 20px;
+                        }
+                      </style>
+                      <div class="row">
+                        <center>
+                          {% if user_id == 1 or user_id == 4 or user_id == 7 or user_id == 10 or user_id == 13 or user_id == 16 %}
+                            <img class="center"
+                              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=adult-beard-boy-casual-220453.jpg&fm=jpg"/>
+                          {% elif user_id == 2 or user_id == 5 or user_id == 11 or user_id == 14 or user_id == 17 %}
+                            <img class="center"
+                              src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?cs=srgb&dl=boy-casual-eyes-1222271.jpg&fm=jpg"/>
+                          {% else %}
+                            <img class="center"
+                              src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=women-s-white-and-black-button-up-collared-shirt-774909.jpg&fm=jpg"/>
+                          {% endif %}
+                        </center>
+                      </div>
                       <div class="row">
                         <div class="col-md-6">
                           <h4 class="featurette-heading"><strong>Nome</strong></h4>

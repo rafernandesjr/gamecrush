@@ -8,9 +8,18 @@
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
                 <ul class="list-unstyled">
-                <li><a href="/{{auth_id}}/acesso" class="text-white">Acessar</a></li>
-                <li><a href="/{{auth_id}}/registro" class="text-white">Cadastrar</a></li>
-                <a href="{% url 'admin:index' %}" class ="text-white">Administração</a>
+                {% if auth_id %}
+                    {% if auth_id is not 0 %}
+                        <li><a href="/{{auth_id}}/update/{{auth_id}}" class ="text-white">Editar Perfil</a></li>
+                        <li><a href="/" class="text-white">Sair da Sessão</a></li>
+                    {% else %}
+                        <li><a href="/{{auth_id}}/acesso" class="text-white">Acessar</a></li>
+                        <li><a href="/{{auth_id}}/registro" class="text-white">Cadastrar</a></li>    
+                    {% endif %}
+                {% else %}
+                    <li><a href="/{{auth_id}}/acesso" class="text-white">Acessar</a></li>
+                    <li><a href="/{{auth_id}}/registro" class="text-white">Cadastrar</a></li>
+                {% endif %}
                 <li><a href="#" class="text-white">Entre em Contato</a></li>
                 </ul>
             </div>
